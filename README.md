@@ -1,5 +1,10 @@
 # figma2react
 
+Convert figma components in react components
+
+![](https://dl.dropboxusercontent.com/s/g271pk7p25o3x1n/ezgif.com-video-to-gif.gif?dl=0)
+
+
 ## installation
 
 ```
