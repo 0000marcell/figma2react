@@ -12,7 +12,7 @@
 ```
 you can use any name
 
-## create configuration file in the root of the project
+## create the configuration file in the root of the project
 ```
   cd test-figma2react
   touch .figma2react
@@ -28,7 +28,7 @@ you can use any name
   }
 ```
 
-you can findout how to get you token [here](https://www.figma.com/developers/docs#auth)
+you can findout how to get your token [here](https://www.figma.com/developers/docs#auth)
 
 if you wanna test it out just use the test project, projectId: "eYk3d4ngtHUXkg82atfuJP"
 
@@ -47,4 +47,4 @@ inside your CRA project
 ```
 
 
-Marcell Monteiro Cruz
+###### Marcell Monteiro Cruz - 2018
