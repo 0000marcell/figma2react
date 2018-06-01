@@ -1,6 +1,6 @@
 {
   "name": "figma2react",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "converts figma designs in to react components",
   "preferGlobal": true,
   "bin": "./figma2react.js",
