@@ -4,6 +4,7 @@ const headers = new fetch.Headers();
 const figma = require('./lib/figma');
 const program = require('commander');
 const fs = require('fs');
+const Path = require('path');
 
 const baseUrl = 'https://api.figma.com';
 
@@ -79,6 +80,13 @@ async function generateComponents(data) {
   const canvas = doc.children[0];
   const config = data.config;
   const headers = data.headers;
+  const componentsDir = `./${config.directory || 'src/components'}`;
+
+  try {
+    fs.accessSync(componentsDir);
+  } catch (e) {
+    fs.mkdirSync(componentsDir, { recursive: true });
+  }
 
   let html = '';
 
@@ -131,7 +139,7 @@ async function generateComponents(data) {
     let contents = "import React, { Component} from 'react'\n";
     contents+="\n";
     contents += component.doc + "\n";
-    const path = `./src/components/${component.name}.js`;
+    const path = Path.join(componentsDir, `${component.name}.js`);
     fs.writeFile(path, contents, function(err) {
       if (err) console.log(err);
       console.log(`wrote ${path}`);

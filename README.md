@@ -29,7 +29,8 @@ you can use any name
 
   {
     "projectId": <id of your project>,
-    "token": <your figma developer token>
+    "token": <your figma developer token>,
+    "directory": <path to destination directory ("./src/components" by default)>
   }
 ```
 
