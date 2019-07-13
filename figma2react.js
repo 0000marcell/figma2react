@@ -2,6 +2,7 @@
 const fetch = require('node-fetch');
 const headers = new fetch.Headers();
 const figma = require('./lib/figma');
+const typeGen = require('./lib/typeGen');
 const program = require('commander');
 const fs = require('fs');
 const Path = require('path');
@@ -79,6 +80,7 @@ async function generateComponents(data) {
   const doc = data.document;
   const canvas = doc.children[0];
   const config = data.config;
+  const ts = (config.types || []).includes('ts');
   const headers = data.headers;
   const componentsDir = `./${config.directory || 'src/components'}`;
 
@@ -136,13 +138,16 @@ async function generateComponents(data) {
 
   for (const key in componentMap) {
     let component = componentMap[key];
-    let contents = "import React, { Component} from 'react'\n";
-    contents+="\n";
-    contents += component.doc + "\n";
-    const path = Path.join(componentsDir, `${component.name}.js`);
-    fs.writeFile(path, contents, function(err) {
+    const imports = "import React, { Component } from 'react';\n\n";
+    const contents = imports + component.doc + "\n";
+    const path = Path.join(componentsDir, component.name);
+    fs.writeFile(path + '.js', contents, function(err) {
       if (err) console.log(err);
-      console.log(`wrote ${path}`);
+      console.log(`wrote ${path}.js`);
+    });
+    ts && fs.writeFile(path + '.d.ts', imports + typeGen.ts(component) + '\n', function(err) {
+      if (err) console.log(err);
+      console.log(`wrote ${path}.d.ts`);
     });
   }
 }
