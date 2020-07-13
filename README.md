@@ -30,7 +30,8 @@ you can use any name
   {
     "projectId": <id of your project>,
     "token": <your figma developer token>,
-    "directory": <path to destination directory ("./src/components" by default)>
+    "directory": <path to destination directory ("./src/components" by default)>,
+    "types": <array of types that will be generated. only ts is supported. empty by default>
   }
 ```
 
